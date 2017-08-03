@@ -4,7 +4,7 @@ $mobile = $_GET['mobile'];
 $content = $_GET['content'];
 $url = 'http://10.10.32.2:8080/service/data/ws/rest/message/checkAndSend';
 $post_data = array(
-    'content'=>$content,
+    'content'=>'【卡卡贷】'.$content,
     'productType'=>'kkd',
     'mobile'=>$mobile
 );

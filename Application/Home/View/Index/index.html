@@ -2,13 +2,39 @@
 <html>
 <head>
 	<title>index</title>
+	<script src="/Public/js/jquery-3.2.1.js"></script>
 </head>
 <body>
-
+<input type="radio" checked="checked" name="sex" value="男"><label> 男</label>
+<input type="radio" name="sex" value="女"><label>女</label>
+<select name="students" >
+	<option value="20100824" selected="selected">studentA</option>
+	<option value="20100826">studentB</option>
+	<option value="20100828">studentC</option>
+</select>
+<br>
+<table>
+	<tr><td>姓名：</td><td id="userName"></td></tr>
+	<tr><td>性别：</td><td id="userSex"></td></tr>
+	<tr><td>学号：</td><td id="userNo"></td></tr>
+</table>
 </body>
 </html>
 <script type="text/javascript">
-alert(123);
-alert(456);
-alert(789);
+	/*:checked查找所有选中复选框元素*/
+	$('input[name=sex]').click(function () {
+	    var sex = $('input[name=sex]:checked').val();
+	    $('#userSex').html(sex);
+    });
+	/*select选择元素值变化时调用*/
+	$('select[name=students]').change(function () {
+		//:selected查找选择器中选中的元素的值
+	    var obj = $('select[name=students]').find("option:selected");
+		var number = obj.val();
+		var userName = obj.html();
+		$('#userName').html(userName);
+		$('#userNo').html(number);
+    });
+
+
 </script>
