@@ -6,16 +6,18 @@ class Check{
     function __construct($token)
     {
         //连接redis
-        /*$redis = new Redis();
-        $redis_ip = '127.0.0.1';//todo
-        $this->redis = $redis->connect($redis_ip,6379);
-        if(!$this->redis){
+        $this->redis = new Redis();
+        $redis_ip = '127.0.0.1';//redis地址 todo
+        $password = '';//redis密码 todo
+        $conn = $this->redis->connect($redis_ip,6379);
+        $this->redis->auth($password);
+        if(!$conn){
             die(json_encode(['status'=>201,'msg'=>'redis连接失败']));
         }
         $phone = $this->get_phone($token);
         if(empty($phone)){
             die(json_encode(['status'=>201,'msg'=>'无效token，查询不到手机号']));
-        }*/
+        }
         //连接数据库
         $host = '127.0.0.1';//数据库host todo
         $username='root';//用户名 todo
@@ -43,8 +45,7 @@ class Check{
             ];//todo
         }
         $res = $this->curl_post($url,$post_data);
-        return $res;
-
+        die($res);
     }
     //根据token从redis中取出phone
     public function get_phone($token){
@@ -83,8 +84,7 @@ class Check{
     }
 }
 
-//$token = $_GET['token'];//传入token参数
-$token = '1111';//传入token参数
+$token = $_GET['token'];//传入token参数
 if(empty($token)){
     die(json_encode(['status'=>201,'msg'=>'token为空']));
 }
